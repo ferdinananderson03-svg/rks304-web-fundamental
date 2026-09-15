@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Nama Anda</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="wrap" aria-label="Navigasi utama">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap contact-layout">
+
+        <div class="contact-note">
+          <h2>Kolaborasi &amp; Kontak</h2>
+          <p class="lead">
+            Terbuka untuk konsultasi, kolaborasi proyek, atau sekadar berdiskusi
+            seputar pengembangan web. Isi formulir di samping dan saya akan
+            membalas secepatnya.
+          </p>
+          <ul class="contact-detail">
+            <li><strong>Email:</strong> nama@email.com</li>
+            <li><strong>Lokasi:</strong> Kota, Indonesia</li>
+            <li><strong>GitHub:</strong> github.com/username</li>
+          </ul>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="field">
+            <label for="fullname">Nama Lengkap</label>
+            <input type="text" id="fullname" name="fullname" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Alamat Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="field">
+            <label for="category">Kategori / Keperluan</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected>Pilih keperluan</option>
+              <option value="konsultasi">Konsultasi</option>
+              <option value="kolaborasi">Kolaborasi Proyek</option>
+              <option value="umum">Pertanyaan Umum</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Preferensi kontak balasan</legend>
+            <div class="radio-row">
+              <input type="radio" id="reply-email" name="reply-method" value="email" checked>
+              <label for="reply-email">Email</label>
+            </div>
+            <div class="radio-row">
+              <input type="radio" id="reply-wa" name="reply-method" value="whatsapp">
+              <label for="reply-wa">WhatsApp</label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="phone">Nomor WhatsApp <span class="hint">(opsional, isi jika ingin dibalas lewat WhatsApp)</span></label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="field">
+            <label for="message">Pesan</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit">Kirim Pesan</button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Ferdinan Anderson</span>
+      <span>Praktikum Web Fundamental — Minggu 1</span>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const name = document.getElementById('fullname').value;
+      status.textContent = 'Terima kasih, ' + name + '. Pesan kamu sudah tercatat (demo — belum terhubung ke server).';
+      status.classList.add('visible');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
